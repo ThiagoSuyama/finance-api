@@ -2,7 +2,7 @@ module.exports = {
   dialect: 'mysql',
   host:'localhost',
   username:'root',
-  password:null,
+  password: '123Mudar!',
   database:'financeapi',
   define:{
     timestamps: true,
