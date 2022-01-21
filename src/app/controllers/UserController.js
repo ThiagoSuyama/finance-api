@@ -1,4 +1,5 @@
 import User from '../models/User';
+import bcrypt from 'bcrypt'
 
 class UserController {
   async store (req, res) {
@@ -9,13 +10,12 @@ class UserController {
       return res.status(400).json({ error: 'User already exists. '});
     }
 
-    const { id, name, email } = await User.create(req.body);
+    const {id, name, email, password} = req.body
+    const password_hash  = await bcrypt.hash(password, 10)
+
+    const user =  await User.create({ id, name, email, password_hash});
     
-    return res.json({
-      id, 
-      name, 
-      email
-    })
+    return res.json(user)
   }
 }
 
