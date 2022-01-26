@@ -2,7 +2,7 @@ import User from '../models/User';
 import bcrypt from 'bcrypt'
 
 class UserController {
-  async store (req, res) {
+  async create (req, res) {
     
     const userExists = await User.findOne({where: { email : req.body.email }})
 
@@ -17,6 +17,7 @@ class UserController {
     
     return res.json(user)
   }
+
 }
 
 export default new UserController();
